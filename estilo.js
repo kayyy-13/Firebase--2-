@@ -42,16 +42,16 @@ export default StyleSheet.create({
     alignItems: 'center'
   },
   buttonText: {
-    color: '#fff',
+    color: '#070606ff',
     fontWeight: 700,
     fontSize: 15
   },
   buttonSec: {
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffffff',
     borderColor: '#e9ce33ff',
     borderWidth: 2
   },
   buttonSecText: {
-    color: '#e9ce33ff'
+    color: '#020202ff'
   }
 });

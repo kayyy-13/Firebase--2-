@@ -36,7 +36,7 @@ export default function Register() {
 
   return (
     <KeyboardAvoidingView behavior='padding' style={styles.container}>
-      <ImageBackground source={require('../assets/back2.png')} resizeMode='stretch' style={styles.container}>
+      <ImageBackground source={require('../assets/tela.png')} resizeMode='stretch' style={styles.container}>
         <Text style={styles.titulo}>CADASTRO DE USUÁRIOS</Text>
 
         <View style={styles.inputView}>
@@ -47,7 +47,7 @@ export default function Register() {
               nome : valor
             })}
             style={styles.input}
-            activeUnderlineColor='#005362'
+            activeUnderlineColor='#e9ce33ff'
           />
           <TextInput 
             label='Email' 
@@ -56,7 +56,7 @@ export default function Register() {
               email : valor
             })}
             style={styles.input}  
-            activeUnderlineColor='#005362'    
+            activeUnderlineColor='#e9ce33ff'    
           />
           <TextInput 
             label='Senha' 
@@ -66,7 +66,7 @@ export default function Register() {
             })}
             secureTextEntry={true}
             style={styles.input}
-            activeUnderlineColor='#005362'
+            activeUnderlineColor='#e9ce33ff'
           />
           <TextInput 
             label='Fone' 
@@ -75,7 +75,17 @@ export default function Register() {
               fone : valor
             })}
             style={styles.input}
-            activeUnderlineColor='#005362'
+            activeUnderlineColor='#e9ce33ff'
+            
+          />
+           <TextInput 
+            label='PCD' 
+            onChangeText={valor => setFormUsuario({
+              ...formUsuario,
+              PCD : valor
+            })}
+            style={styles.input}
+            activeUnderlineColor='#e9ce33ff'
           />
         </View>
 
