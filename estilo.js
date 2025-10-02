@@ -6,7 +6,8 @@ export default StyleSheet.create({
     backgroundColor: '#ffffffff',
     alignItems: 'center',
     justifyContent: 'center',
-    width: '100%'
+    width: '100%',
+    marginTop: 20
   },
   containerHome: {
     flex: 1,
@@ -25,10 +26,18 @@ export default StyleSheet.create({
   inputView: {
     width: '55%',
     marginBottom: 20,
+    paddingLeft: 8,
+    borderRadius: 10
   },
   input: {
     marginBottom: 20,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    
+  },
+  inputPicker: {
+    backgroundColor: '#fff',
+    marginBottom: 20,
+    paddingLeft: 8
   },
   buttonView: {
     width: '55%',
