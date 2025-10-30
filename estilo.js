@@ -62,5 +62,17 @@ export default StyleSheet.create({
   },
   buttonSecText: {
     color: '#020202ff'
-  }
+  },
+
+  listItem: {
+    backgroundColor: '#e9ce33ff',
+    borderBottomWidth: 2,
+    borderBottomColor: '#fff',
+    padding: 10,
+    marginTop: 15,
+    width:100,
+  },
+  listText: {
+    fontSize: 18,
+  },
 });

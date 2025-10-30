@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Text, View, KeyboardAvoidingView, TouchableOpacity, ImageBackground } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { auth, firestore } from '../firebase';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styles from '../estilo';
 
 import { Picker } from '@react-native-picker/picker';
@@ -13,6 +13,14 @@ export default function CadastroResvaga() {
 
   const navigation = useNavigation();
 
+  const route = useRoute();
+
+   useEffect(() => {
+    if (route.params) {
+     setFormResvaga(route.params.resvaga);
+    }
+  }, [route.params]);
+
   const salvar = async () => {
     try {
       const refResvaga = firestore
@@ -20,7 +28,20 @@ export default function CadastroResvaga() {
         .doc(auth.currentUser?.uid)
         .collection("Resvaga");
 
-      const novoResvaga = new Resvaga(formResvaga);
+    const novoResvaga = new Resvaga(formResvaga);
+
+      if(formResvaga.id) {
+        const idResvaga = refResvaga.doc(formResvaga.id);
+        idResvaga.update(novoResvaga.toFirestore())
+        .then(() => {
+          alert('Reserva atualizada com sucesso!');
+          
+        })
+      } else{
+        const idResvaga = refResvaga.doc();
+          novoResvaga.id = idResvaga.id;
+        idResvaga.update(novoResvaga.toFirestore())
+      }
 
       const idResvaga = refResvaga.doc();
       novoResvaga.id = idResvaga.id;
@@ -40,7 +61,7 @@ export default function CadastroResvaga() {
         <Text style={styles.titulo}>RESERVA DE VAGAS DE ESTACIONAMENTO</Text>
 
         <View style={styles.inputView}>
-          <Text style={{ color: '#005362', fontWeight: 'bold', marginTop: 10 }}>Tipo de Vaga</Text>
+          <Text style={{ color: '#e9ce33ff', fontWeight: 'bold', marginTop: 10 }}>Tipo de Vaga</Text>
           <Picker
             selectedValue={formResvaga.tipo}
             onValueChange={valor => setFormResvaga({
@@ -50,11 +71,12 @@ export default function CadastroResvaga() {
             style={{ backgroundColor: '#fff', marginTop: 5 }}
           >
             <Picker.Item label="Selecione..." value="" />
+            <Picker.Item label="Normal" value="normal" />
             <Picker.Item label="Deficiente" value="deficiente" />
             <Picker.Item label="Idoso" value="idoso" />
           </Picker>
 
-          <Text style={{ color: '#005362', fontWeight: 'bold', marginTop: 10 }}>Tipo de Vaga</Text>
+          <Text style={{ color: '#e9ce33ff', fontWeight: 'bold', marginTop: 10 }}>Tipo de Vaga</Text>
           <Picker
             selectedValue={formResvaga.tipo}
             onValueChange={valor => setFormResvaga({
@@ -66,6 +88,7 @@ export default function CadastroResvaga() {
             <Picker.Item label="Selecione..." value="" />
             <Picker.Item label="Carro" value="carro" />
             <Picker.Item label="Moto" value="moto" />
+             <Picker.Item label="Van" value="van" />
           </Picker>
 
           <TextInput
