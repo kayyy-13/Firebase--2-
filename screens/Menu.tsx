@@ -6,7 +6,29 @@ import Home from "./Home";
 import Reserva from "./Resvaga";
 import ListaReservas from "./ReservaListar";
 
+import { Usuario } from "../model/Usuario";
+import { auth, firestore } from "../firebase";
+import { useEffect, useState } from "react";
+
+
 const Drawer = createDrawerNavigator();
+const[usuario, setUsuario] = useState<Usuario[]>([]); 
+       useEffect( () => {                // Recebe o objeto pet para editar
+        listarUsuario();
+    }, [])
+
+    const listarUsuario = () => {
+        const refUsuario = firestore.collection("Usuario")
+            .doc(auth.currentUser?.uid)
+            .get()
+            .then(DocumentSnapshot =>{
+                setUsuario({
+                    id: DocumentSnapshot.id,
+                    ...DocumentSnapshot.data()
+                })                
+            })
+        
+    }        
 
 export default function Menu() {
 
